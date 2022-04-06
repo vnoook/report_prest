@@ -71,7 +71,8 @@ def name_of_file():
 # состоит из года + месяц
 def name_of_file_ic():
     # текущие месяц и год
-    number_of_month = datetime.datetime.today().month
+    # минус месяц потому, что из ИЦ приходит файл предыдущего месяца
+    number_of_month = datetime.datetime.today().month - 1
     number_of_year = datetime.datetime.today().year
 
     name_year = str(number_of_year)
@@ -81,6 +82,7 @@ def name_of_file_ic():
         name_month = str(number_of_month)
 
     str_period = name_year + '-' + name_month + '.xlsx'
+    print(str_period)
     return str_period
 
 
