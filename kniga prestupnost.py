@@ -82,7 +82,6 @@ def name_of_file_ic():
         name_month = str(number_of_month)
 
     str_period = name_year + '-' + name_month + '.xlsx'
-    print(str_period)
     return str_period
 
 
