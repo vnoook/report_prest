@@ -3,6 +3,7 @@
 # Программа пропускает 3 строки из переменной 'rows_for_skip'.
 # После отработки программы остаётся переименовать файл под период,
 #    поменять жёлтые места на 1, 2 и последнем листе период.
+#    Максим Красовский \ январь 2021 (май 2022) \ noook@yandex.ru
 
 import os
 import time
@@ -117,7 +118,7 @@ xl_cell_begin = {
                 }
 
 # файлы для работы
-xl_template = 'ШАБЛОН Преступность-01-2021.xlsx'
+xl_template = 'ШАБЛОН Преступность-05-2022.xlsx'
 xl_source = name_of_file_ic()
 
 if not os.path.exists(xl_source):
@@ -127,7 +128,7 @@ if not os.path.exists(xl_source):
     input(f'Нажмите ENTER')
     exit()
 
-# строки для пропуска, только в 1ЕМ
+# строки для пропуска
 rows_for_skip = (11, 12, 49)
 
 # открываю книгу шаблон в которую вставляю данные
@@ -147,9 +148,9 @@ for i_list in xl_cell_begin:
     wb_file_data_s = wb_file_data[str(i_list)]
 
     # прохожу по всем листам
-    # если лист 2, то спец обработка, если другие, то считаю все одинаково
+    # если лист 2, то спец обработка, если другие, то считаются все одинаково
     if i_list == '2':
-        # надо обработать 2 диапазона
+        # надо обработать два диапазона
         # B5:F25  -> R5C2:R25C6
         # B27:F32 -> R27C2:R32C6
 
@@ -191,6 +192,8 @@ for i_list in xl_cell_begin:
                                      (cells_range.index(range_rows)+1)+7-i_shift,
                                      (range_rows.index(range_cols)+1)+1
                                      ).value = conv_cell(range_cols.value)
+
+    print(f' ...... обработан лист {i_list}')
 
 # закрываю файл из которого беру данные
 wb_file_data.close()
