@@ -11,7 +11,7 @@ import datetime
 import openpyxl
 
 # считаю время скрипта
-time_start = time.time()
+time_start = time.monotonic()
 print('начинается ' + '.'*19)
 
 
@@ -177,7 +177,6 @@ for i_list in xl_cell_begin:
                                     xl_cell_begin[str(i_list)][1].split(':')[1]
                                     ]
 
-        print(f'{i_list} ... {xl_cell_begin[str(i_list)][1]}')
         # переменная сдвига при пропуске из rows_for_skip
         i_shift = 0
 
@@ -206,7 +205,7 @@ wb_prestup.save(name_of_file())
 wb_prestup.close()
 
 # считаю время скрипта
-time_finish = time.time()
+time_finish = time.monotonic()
 print('\n' + '.'*30 + ' закончено за', round(time_finish-time_start, 3), 'секунд')
 
 # закрываю программу
